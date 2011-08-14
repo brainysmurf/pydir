@@ -1,3 +1,3 @@
 #!/bin/bash
 cur=`pwd`
-python3 -m dir "$cur" $@
+python3 -m pydir "$cur" $@
