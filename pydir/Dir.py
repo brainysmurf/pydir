@@ -25,7 +25,7 @@ import re
 from colorama import Fore, Back, Style
 from colorama import init as colorama_init
 from colors import white, green, \
-     cyan, yellow, magenta
+     cyan, yellow
 
 user_home_directory = os.path.expanduser('~')
 path_to_trash       = os.path.expanduser('~/.Trash')
@@ -614,7 +614,7 @@ class Pydir(AbstractDir):
             return (strikeout, green(item))
 
         if this.default and this.force_default:
-            return ( cyan(num), magenta(item) )
+            return ( cyan(num), cyan(item) )
 
         if this.default:
             return ( cyan(num), cyan(item) )
