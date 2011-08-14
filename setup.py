@@ -14,7 +14,10 @@ class install(_install):
         #shutil.copy('scripts/dir', the_path) scripts no longer used
 
         first_line = '# dir (version {0}) application modifying your bash profile starting here:\n#DO NOT MODIFY'.format(dir_version)
-        with open(os.path.expanduser('~/.bash_profile')) as f:
+        user_bash_profile = os.path.expanduser('~/.bash_profile')
+        if not os.path.exists(user_bash_profile):
+            open(user_bash_profile, 'w') # touch
+        with open(user_bash_profile) as f:
             user_profile = f.readlines()
 
         if not first_line in user_profile:
