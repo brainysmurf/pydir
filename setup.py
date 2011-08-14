@@ -4,14 +4,14 @@ import sys
 import shutil
 import os
 
-dir_version = '0.6.3'
+dir_version = '0.7'
 
 class install(_install):
     def run(self):
         _install.run(self)
         version = "{}.{}".format(sys.version_info.major, sys.version_info.minor)
         the_path = "/Library/Frameworks/Python.framework/Versions/{}/bin".format(version)
-        shutil.copy('scripts/dir', the_path)
+        #shutil.copy('scripts/dir', the_path) scripts no longer used
 
         first_line = '# dir (version {0}) application modifying your bash profile starting here:\n#DO NOT MODIFY'.format(dir_version)
         with open(os.path.expanduser('~/.bash_profile')) as f:
@@ -33,7 +33,7 @@ class install(_install):
             get_front_app().keystroke('dir -tutorial\n')
 
 if sys.version_info >= (3,0):
-	root_dir = 'dir'
+	root_dir = 'pydir'
 else:
 	raise Exception("Enter: 'python3 setup.py install' on command line to install\nRequires python3\n")
 
