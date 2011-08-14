@@ -1,7 +1,7 @@
 from setuptools import setup, Extension
 from setuptools.command.install import install as _install
 import sys
-import subprocess
+import shutil
 import os
 
 dir_version = '0.7'
@@ -10,8 +10,8 @@ class install(_install):
     def run(self):
         _install.run(self)
         version = "{}.{}".format(sys.version_info.major, sys.version_info.minor)
-        the_path = "/usr/bin"
-        suprocess.Popen('sudo copy scripts/dir {}'.format(the_path)).communicate()
+        the_path = "/Library/Frameworks/Python.framework/Versions/{}/bin".format(version)
+        shutil.copy('scripts/dir', the_path)
 
         first_line = '# pydir (version {0}) application modifying your bash profile starting here:\n#DO NOT MODIFY'.format(dir_version)
         user_bash_profile = os.path.expanduser('~/.bash_profile')
@@ -26,6 +26,8 @@ class install(_install):
                 f.write(first_line)
                 f.write('\ntouch /tmp/tee_output.txt\n')
                 f.write("""alias drop='cd "`cat /tmp/tee_output.txt| tail -2 | perl -ne "chomp and print"`"'""")
+                f.write('PATH="{}:${}'.format(the_path, '{{PATH}}'))
+                f.write("export PATH")
                 f.write("\n#end dir modification\n")            
         print("Success")
         print()
