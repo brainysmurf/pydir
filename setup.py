@@ -11,9 +11,9 @@ class install(_install):
         _install.run(self)
         version = "{}.{}".format(sys.version_info.major, sys.version_info.minor)
         the_path = "/Library/Frameworks/Python.framework/Versions/{}/bin".format(version)
-        #shutil.copy('scripts/dir', the_path) scripts no longer used
+        shutil.copy('scripts/dir', the_path)
 
-        first_line = '# dir (version {0}) application modifying your bash profile starting here:\n#DO NOT MODIFY'.format(dir_version)
+        first_line = '# pydir (version {0}) application modifying your bash profile starting here:\n#DO NOT MODIFY'.format(dir_version)
         user_bash_profile = os.path.expanduser('~/.bash_profile')
         if not os.path.exists(user_bash_profile):
             open(user_bash_profile, 'w') # touch
