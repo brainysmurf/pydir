@@ -2,7 +2,7 @@ import os
 from pydir.Filer import File_list, File_object, build_from_scratch
 from colorama import Fore, Back, Style
 from colors import white, green, \
-     red, cyan, yellow, magenta
+     red, cyan, yellow
 from pydir.Command import copy_to_clipboard
 import fileinput
 import re
