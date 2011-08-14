@@ -26,7 +26,7 @@ class install(_install):
                 f.write(first_line)
                 f.write('\ntouch /tmp/tee_output.txt\n')
                 f.write("""alias drop='cd "`cat /tmp/tee_output.txt| tail -2 | perl -ne "chomp and print"`"'""")
-                f.write('\nPATH="{}:${}"'.format(the_path, '{{PATH}}'))
+                f.write('\nPATH="{}:${}"'.format(the_path, '{PATH}'))
                 f.write("\nexport PATH")
                 f.write("\n#end dir modification\n")            
         print("Success")
